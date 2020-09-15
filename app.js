@@ -77,6 +77,44 @@ else{
   return app(people);
 }
 
+function searchByMultipleCriteria(people){
+    let displayoption = prompt("Please select your search criteria. The search options are as follows. 'gender', 'dob','height','weight','eyecolor',and 'occupation'. Type the option you would like to select, or 'results' to see a list of people match the current criteria. otherwise type 'restart' or 'quit' ").toLowerCase();
+
+    switch(displayOption){
+        case "gender":
+            let genderInput = promptFor("What is the person's gender?", chars).toLowerCase();
+            var filteredPeople = searchByCriteria(people,"gender", genderInput)
+            return assessSearchResults(people, filteredPeople)
+        case "dob":
+            let dobInput = promptFor("whats the persons Date of Birth? (format MM/DD/YYYY - Do not include 0's)",chars);
+            var filteredPeople = searchByCriteria(people, "dob",dobInput)
+            return assessSearchResults(people, filteredPeople)
+        case "height":
+            let heightInput = parseInt(promptFor("What is the person's height?(round to nearest whole number)",chars));
+            var filteredPeople = searchByCriteria(people,"height",heightInput)
+            return assessSearchResults(people, filteredPeople)
+        case "weight":
+            let weightInput = parseInt(promptFor("what is the person's weight?(round to nearestwhole number)",chars));
+            var filteredPeople = searchByCriteria(people, "weight",weightInput)
+            return assessSearchResults(people, filteredPeople)
+        case "eyecolor":
+            let eyeColorInput = promptFor("What's the person's Eyecolor?(Brown, Blue, Hazel, Green, Black)",chars).toLowerCase();
+            var filteredPeople = searchByCriteria(people, "eyeColor",eyeColorInput)
+            return assessSearchResults(people, filteredPeople)
+        case "occupation":
+            let jobInput = promptFor("What does this person do for a living?",chars);
+            var filteredPeople = searchByCriteria(people,"occupation",jobInput)
+            return assessSearchResults(people, filteredPeople)
+        case "results":
+            displayPeople(people);
+            return app(people); // restart
+        default:
+            return mainMenu(person,people);
+
+
+    }
+}
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
