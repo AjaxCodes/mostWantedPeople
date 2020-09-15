@@ -199,5 +199,54 @@ function filterByDescendents(person, people){
     }
 
 }
+ function filterForFamily(person,people){
+    let familyInfo = filterForSpouse(person,people);
+    familyInfo += filterByParents(person, people);
+    familyInfo += filterBySiblings(person, people);
+    alert(familyInfo);
+}
+
+function filterBySpouse(people, person){
+    if(person.currentSpouse == null){
+        return "No spouse in database \n"
+    }
+    else{
+        let idToSearch = person.currentSpouse;
+        var spouseInfo = people.filter(function(person){
+            if(person.id == idToSearch){
+                return true;
+            }
+            else{
+                return false;
+            }
+        })
+        let result = "spouse : " + spouseInfo[0].firstName + " " + spouseInfo[0].lastName + "\n";
+        return result;
+    }
+}
+
+function filterByParents (person, people){
+    if(person.parents.length == 0){
+        return "no record in database. \n"
+    }
+    else{
+        var result = "";
+        for(var i = 0; i <person.parents.length; i++){
+            let idSearch = person.parents[i];
+            let parentInfo = people.filter(function(person){
+                if(person.id == idSearch){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            })
+            result += "Parent" + parentInfo[0].firstName + " " + parentInfo[0].lastName + "\n";
+
+        }
+    }
+    return result;
+}
+
 
 
