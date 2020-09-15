@@ -177,3 +177,27 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+function filterByDescendents(person, people){
+    let idToSearch = people.id;
+    letdescendentArray = people.filter (function(person){
+        if(person.parents.contains(idToSearch)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    if(descendentArray.length == 0){
+        alert("can not locate any descendents.");
+        return mainMenu(person,people);
+    }
+    else{
+        for(var i = 0; i < descendentsArray.length; i++){
+
+        }
+    }
+
+}
+
+
