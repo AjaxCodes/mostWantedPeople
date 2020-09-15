@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
+      searchResults = searchByMultipleCriteria// TODO: search by traits
       break;
       default:
     app(people); // restart app
@@ -37,20 +37,20 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
-    break;
+        displayPerson(person);
+        return mainMenu(person,people); // TODO: get person's info
     case "family":
-    // TODO: get person's family
-    break;
+        searchForFamily(person,people);
+        return mainMenu(person,People); // TODO: get person's family
     case "descendants":
-    // TODO: get person's descendants
-    break;
+        return mainMenu(person,people);// TODO: get person's descendants
     case "restart":
     app(people); // restart
     break;
     case "quit":
     return; // stop execution
     default:
+        alert('Invalid input. Please try your selection again')
     return mainMenu(person, people); // ask again
   }
 }
