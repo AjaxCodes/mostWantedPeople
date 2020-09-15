@@ -110,11 +110,20 @@ function searchByMultipleCriteria(people){
             return app(people); // restart
         default:
             return mainMenu(person,people);
-
-
-    }
+     }
 }
 
+function searchByCriteria(people, criteria, userInput){
+    let filteredPeople = people.filter(function(person){
+        if(person[criteria] === userInput){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    return filteredPeople;
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
