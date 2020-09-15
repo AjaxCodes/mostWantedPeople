@@ -139,6 +139,7 @@ function confirmSearchResults(people, searchResults){
         searchByMultipleCriteria(searchResults)
     }
 }
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -147,13 +148,17 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
-  let personInfo = "First Name: " + person.firstName + "\n";
-  personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+    let personInfo = "First Name: " + person.firstName +"\n";
+    personInfo = "Last Name: " + person.lastName +"\n";
+    personInfo = "Gender: " + person.gender + "\n";
+    personInfo = "Date of Birth: " + person.dob + "\n";
+    personInfo = "Eye Coloe: " + person.eyeColor + "\n";
+    personInfo = "Height: " + person.height + "\n";
+    personInfo = "Weight: " + person.weight + "\n";
+    personInfo = "Occupation" + person.occupation +"\n"
   alert(personInfo);
 }
+
 
 // function that prompts and validates user input
 function promptFor(question, valid){
