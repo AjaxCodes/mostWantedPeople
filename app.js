@@ -56,8 +56,8 @@ function mainMenu(person, people){
 }
 
 function searchByName(people){
-  let firstName = promptFor("What is the person's first name?", chars);
-  let lastName = promptFor("What is the person's last name?", chars);
+  let firstName = promptFor("What is the person's first name? (Be sure to capitalize!)", chars);
+  let lastName = promptFor("What is the person's last name? (Be sure to capitalize!)", chars);
 
   let foundPerson = people.filter(function(person){
     if(person.firstName === firstName && person.lastName === lastName){
@@ -67,8 +67,14 @@ function searchByName(people){
       return false;
     }
   })
-  // TODO: find the person using the name they entered
-  return foundPerson;
+  if(foundPerson.length == 1){
+      var wantedPerson = foundPerson[0];
+      return wantedPerson;
+}
+else{
+    alert('could not fint that person. please search again, or try searching somethiong besides their name')
+} 
+  return app(people);
 }
 
 // alerts a list of people
