@@ -124,6 +124,21 @@ function searchByCriteria(people, criteria, userInput){
     })
     return filteredPeople;
 }
+function confirmSearchResults(people, searchResults){
+    if(searchResults.length == 0){
+        alert("There are no matching results, Please try again.")
+        return app(people)
+        // no one matches
+    }
+    else if(searchResults.length == 1){
+        var wantedPerson = searchResults[0];
+        return wantedPerson;
+        // book em dano, foud our person
+    }
+    else{
+        searchByMultipleCriteria(searchResults)
+    }
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
