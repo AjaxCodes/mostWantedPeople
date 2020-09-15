@@ -248,5 +248,32 @@ function filterByParents (person, people){
     return result;
 }
 
+function filterBySiblings(person, people){
+    if(person.parents.length == 0){
+        return "no record of sibling in databse. \n"
+    }
+    else{
+        let idToSearch = person.parents[0];
+        var siblingInfo = people.filter(function(people){
+            if(person.parents[0] == idToSearch){
+                return true;
+            }
+            else{
+                return false;
+            }
+        })
+    }
+    if(siblingInfo.length == 0){
+        return "no record of a sibling in database \n"
+    }
+    else{
+        var result = "";
+        for(var i = 0; i < siblingInfo.length; i++){
+            result += "sibling" + siblingInfo[i].firstName + " " + siblingInfo[i].lastName + "\n";
+        }
+    }
+    return result;
+}
+
 
 
