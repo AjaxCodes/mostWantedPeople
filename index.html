@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <meta charset="utf-8">
-    
     <title>most wanted</title>
  
 </head>
-<link rel="stylesheet" type="text/css" href="styles.css">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"> la recherche de criminels</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+ <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+         <form class="form-inline my-2 my-lg-0">
+      <button onclick="app(data)" type="button"  class="btn btn-outline-warning">Le Start</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert"> MSG </button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0">Prompt MESSAGE GOES HERE <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+  </div>
+
+<body>
+   
+<script src="data.js"></script>
+    <script src="app.js"></script>
 
 <style>
    
     p{
-        color: yellow;
+        color: black;
         font-size: 24px;
         margin: auto;
-        background-color: black;
+        background-color: white;
         text-align: center;
 
     }
@@ -36,17 +60,7 @@
     welkom bij de criminele vinder, de thuisbasis van 's werelds gevaarlijkste criminelen. <br>
     
     Sveiki atvykę į nusikaltėlių ieškotoją, pavojingiausių pasaulio nusikaltėlių namus.</p>
-
-
-
-
-<body>
-    
-    <button onclick="app(data)" text-align = center>Le start</button>
-  
-    <script src="data.js"></script>
    
-    <script src="app.js"></script>
   
 </body>
 </html>

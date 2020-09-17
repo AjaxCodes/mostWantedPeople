@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      searchResults = searchByMultipleCriteria// TODO: search by traits
+      searchResults = searchByMultipleCriteria(people); // TODO: search by traits
       break;
       default:
     app(people); // restart app
@@ -20,7 +20,12 @@ function app(people){
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+  if(searchResults.length == 1){
+    mainMenu(searchResults[0], people);
+  }
+  else{
+      displayPeople(searchResults);
+  }
 }
 
 // Menu function to call once you find who you are looking for
@@ -40,7 +45,7 @@ function mainMenu(person, people){
         displayPerson(person);
         return mainMenu(person,people); // TODO: get person's info
     case "family":
-        searchForFamily(person,people);
+        filterForFamily(person,people);
         return mainMenu(person,People); // TODO: get person's family
     case "descendants":
         return mainMenu(person,people);// TODO: get person's descendants
@@ -78,38 +83,38 @@ else{
 }
 
 function searchByMultipleCriteria(people){
-    let displayoption = prompt("Please select your search criteria. The search options are as follows. 'gender', 'dob','height','weight','eyecolor',and 'occupation'. Type the option you would like to select, or 'results' to see a list of people match the current criteria. otherwise type 'restart' or 'quit' ").toLowerCase();
+    let displayOption = prompt("Please select your search criteria. The search options are as follows. 'gender', 'dob','height','weight','eyecolor',and 'occupation'. Type the option you would like to select, or 'results' to see a list of people match the current criteria. otherwise type 'restart' or 'quit' ").toLowerCase();
 
     switch(displayOption){
         case "gender":
             let genderInput = promptFor("What is the person's gender?", chars).toLowerCase();
             var filteredPeople = searchByCriteria(people,"gender", genderInput)
-            return assessSearchResults(people, filteredPeople)
+            return confirmSearchResults(people, filteredPeople)
         case "dob":
             let dobInput = promptFor("whats the persons Date of Birth? (format MM/DD/YYYY - Do not include 0's)",chars);
             var filteredPeople = searchByCriteria(people, "dob",dobInput)
-            return assessSearchResults(people, filteredPeople)
+            return confirmSearchResults(people, filteredPeople)
         case "height":
             let heightInput = parseInt(promptFor("What is the person's height?(round to nearest whole number)",chars));
             var filteredPeople = searchByCriteria(people,"height",heightInput)
-            return assessSearchResults(people, filteredPeople)
+            return confirmSearchResults(people, filteredPeople)
         case "weight":
             let weightInput = parseInt(promptFor("what is the person's weight?(round to nearestwhole number)",chars));
             var filteredPeople = searchByCriteria(people, "weight",weightInput)
-            return assessSearchResults(people, filteredPeople)
+            return confirmSearchResults(people, filteredPeople)
         case "eyecolor":
             let eyeColorInput = promptFor("What's the person's Eyecolor?(Brown, Blue, Hazel, Green, Black)",chars).toLowerCase();
             var filteredPeople = searchByCriteria(people, "eyeColor",eyeColorInput)
-            return assessSearchResults(people, filteredPeople)
+            return confirmSearchResults(people, filteredPeople)
         case "occupation":
             let jobInput = promptFor("What does this person do for a living?",chars);
             var filteredPeople = searchByCriteria(people,"occupation",jobInput)
-            return assessSearchResults(people, filteredPeople)
-        case "results":
-            displayPeople(people);
-            return app(people); // restart
+            return confirmSearchResults(people, filteredPeople)
+        //case "results":
+           // displayPeople(people);
+            //return app(people); // restart
         default:
-            return mainMenu(person,people);
+            return (people);
      }
 }
 
@@ -130,34 +135,36 @@ function confirmSearchResults(people, searchResults){
         return app(people)
         // no one matches
     }
-    else if(searchResults.length == 1){
-        var wantedPerson = searchResults[0];
-        return wantedPerson;
+   // else if(searchResults.length == 1){
+        
+        //return searchResults;
         // book em dano, foud our person
-    }
+   // }
     else{
-        searchByMultipleCriteria(searchResults)
+        return searchByMultipleCriteria(searchResults)
     }
 }
 
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
+    return displayPerson(person);
   }).join("\n"));
 }
 
 function displayPerson(person){
     let personInfo = "First Name: " + person.firstName +"\n";
-    personInfo = "Last Name: " + person.lastName +"\n";
-    personInfo = "Gender: " + person.gender + "\n";
-    personInfo = "Date of Birth: " + person.dob + "\n";
-    personInfo = "Eye Coloe: " + person.eyeColor + "\n";
-    personInfo = "Height: " + person.height + "\n";
-    personInfo = "Weight: " + person.weight + "\n";
-    personInfo = "Occupation" + person.occupation +"\n"
+    personInfo += "Last Name: " + person.lastName +"\n";
+    personInfo += "Gender: " + person.gender + "\n";
+    personInfo += "Date of Birth: " + person.dob + "\n";
+    personInfo += "Eye Color: " + person.eyeColor + "\n";
+    personInfo += "Height: " + person.height + "\n";
+    personInfo += "Weight: " + person.weight + "\n";
+    personInfo += "Occupation: " + person.occupation +"\n"
+    personInfo += "ID:" + person.id +"\n"
   alert(personInfo);
 }
+
 
 
 // function that prompts and validates user input
