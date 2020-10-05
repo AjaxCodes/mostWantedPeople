@@ -21,7 +21,7 @@ function app(people){
   let searchResults;
   switch(searchType){
     case 'yes':
-      searchResults = searchByName(people);
+      searchResults = searchForName(people);
       break;
     case 'no':
       searchResults = searchByMultipleCriteria(people); // TODO: search by traits
@@ -32,8 +32,8 @@ function app(people){
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  if(searchResults.length == 1){
-    mainMenu(searchResults[0], people);
+  if(searchResults == 1){
+    mainMenu(searchResults, people);
   }
   else{
       displayPeople(searchResults);
@@ -72,7 +72,7 @@ function mainMenu(person, people){
   }
 }
 
-function searchByName(people){
+function searchForName(people){
   let firstName = promptFor("What is the person's first name? (Be sure to capitalize!)", chars);
   let lastName = promptFor("What is the person's last name? (Be sure to capitalize!)", chars);
 
@@ -197,7 +197,7 @@ function chars(input){
   return true; // default validation only
 }
 
-function filterByDescendents(person, people){
+function filterForDescendents(people, person){
     let idToSearch = people.id;
     letdescendentArray = people.filter (function(person){
         if(person.parents.contains(idToSearch)){
@@ -209,7 +209,7 @@ function filterByDescendents(person, people){
     })
     if(descendentArray.length == 0){
         alert("can not locate any descendents.");
-        return mainMenu(person,people);
+        return mainMenu(people, person);
     }
     else{
         for(var i = 0; i < descendentsArray.length; i++){
@@ -218,14 +218,14 @@ function filterByDescendents(person, people){
     }
 
 }
- function filterForFamily(person,people){
+ function filterForFamily(people, person){
     let familyInfo = filterForSpouse(person,people);
-    familyInfo += filterByParents(person, people);
-    familyInfo += filterBySiblings(person, people);
+    familyInfo += filterforParents(person, people);
+    familyInfo += filterforSiblings(person, people);
     alert(familyInfo);
 }
 
-function filterBySpouse(people, person){
+function filterForSpouse(people, person){
     if(person.currentSpouse == null){
         return "No spouse in database \n"
     }
@@ -244,7 +244,7 @@ function filterBySpouse(people, person){
     }
 }
 
-function filterByParents (person, people){
+function filterForParents (people, person){
     if(person.parents.length == 0){
         return "no record in database. \n"
     }
@@ -267,13 +267,13 @@ function filterByParents (person, people){
     return result;
 }
 
-function filterBySiblings(person, people){
+function filterForSiblings(people, person){
     if(person.parents.length == 0){
         return "no record of sibling in databse. \n"
     }
     else{
         let idToSearch = person.parents[0];
-        var siblingInfo = people.filter(function(people){
+        var siblingInfo = people.filter(function(person){
             if(person.parents[0] == idToSearch){
                 return true;
             }
